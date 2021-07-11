@@ -13,13 +13,13 @@ app.get('/',(req,res)=>{
     res.send("This is a Get method")
 })
 app.post('/submit',(req,res)=>{
- dataservice.submit(req.body.ename,req.body.age,req.body.gender,req.body.joindate,req.body.interests,req.body.languages)
+ dataservice.submit(req.body.empid,req.body.ename,req.body.age,req.body.gender,req.body.joindate,req.body.interests,req.body.languages)
  .then(result=>{
     res.status(result.statusCode).json(result)
   })
 })
 app.post('/edit',(req,res)=>{
-    dataservice.edit(req.body.ename,req.body.age,req.body.gender,req.body.joindate,req.body.interests,req.body.languages)
+    dataservice.edit(req.body.empid,req.body.ename,req.body.age,req.body.gender,req.body.joindate,req.body.interests,req.body.languages)
  .then(result=>{
     res.status(result.statusCode).json(result)
   })
@@ -27,6 +27,13 @@ app.post('/edit',(req,res)=>{
 })
 app.post('/getdata',(req,res)=>{
   dataservice.getdata(req,res)
+.then(result=>{
+  res.status(result.statusCode).json(result)
+})
+
+})
+app.post('/deletedata',(req,res)=>{
+  dataservice.deletedata(req.body.empid)
 .then(result=>{
   res.status(result.statusCode).json(result)
 })

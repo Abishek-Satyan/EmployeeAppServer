@@ -4,6 +4,7 @@ mongoose.connect('mongodb://localhost:27017/EmployeeApp',{
     useNewUrlParser:true
 })
 const Employee = mongoose.model('Employee',{
+    empid:Number,
     ename:String,
     age:String,
     gender:String,

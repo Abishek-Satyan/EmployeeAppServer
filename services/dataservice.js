@@ -1,6 +1,6 @@
 const db=require('./db')
-const submit=(ename,age,gender,joindate,interests,languages)=>{
-    return db.Employee.findOne({ename})
+const submit=(empid,ename,age,gender,joindate,interests,languages)=>{
+    return db.Employee.findOne({empid})
     .then(employee=>{
     if(employee){
         return{
@@ -11,6 +11,7 @@ const submit=(ename,age,gender,joindate,interests,languages)=>{
     } 
     else{
         const newEmployee=new db.Employee({
+            empid,
             ename,
             age,
             gender,
@@ -27,13 +28,14 @@ const submit=(ename,age,gender,joindate,interests,languages)=>{
     }   
     })
 }
-const edit=(ename,age,gender,interests,languages)=>{
-    return db.Employee.findOne({ename})
+const edit=(empid,ename,age,gender,joindate,interests,languages)=>{
+    return db.Employee.findOne({empid})
     .then(employee=>{
         if(employee){
             employee.ename=ename
             employee.age=age
             employee.gender=gender
+            employee.joindate=joindate
             employee.interests=interests
             employee.languages=languages
             employee.save()
@@ -67,8 +69,18 @@ const getdata=()=>{
        
     })
 }
+const deletedata=(empid)=>{
+ return db.Employee.deleteOne({empid}).then(result=>{
+    return{
+        statusCode:200,
+        status:true,
+        message:"Employee details Deleted"
+    }   
+ })
+}
 module.exports={
     submit,
     edit,
-    getdata
+    getdata,
+    deletedata
 }
