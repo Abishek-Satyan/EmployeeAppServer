@@ -10,7 +10,8 @@ const Employee = mongoose.model('Employee',{
     gender:String,
     joindate:Date,
     interests:[],
-    languages:[]
+    languages:[],
+    filename:String
 })
 module.exports={
     Employee

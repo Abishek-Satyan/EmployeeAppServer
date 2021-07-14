@@ -1,5 +1,5 @@
 const db=require('./db')
-const submit=(empid,ename,age,gender,joindate,interests,languages)=>{
+const submit=(empid,ename,age,gender,joindate,interests,languages,filename)=>{
     return db.Employee.findOne({empid})
     .then(employee=>{
     if(employee){
@@ -17,7 +17,8 @@ const submit=(empid,ename,age,gender,joindate,interests,languages)=>{
             gender,
             joindate,
             interests,
-            languages
+            languages,
+            filename
         })
         newEmployee.save();
         return{
